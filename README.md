@@ -2,7 +2,7 @@
 
 ### Installation Setup Laravel + InertiaJS + React, Install Admin Panel - https://voyager.devdojo.com/
 
--   git clone `git@github.com:futuresea-dev/Laravel_React_DataTable-`
+-   git clone `https://github.com/futuresea-dev/Laravel_React_DataTable-.git`
 -   `cd Laravel_React_DataTable-`
 -   `cp .env.example .env` and update database credentials `php artisan key:generate`
 -   Install the dependencies: `composer install`
