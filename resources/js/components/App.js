@@ -1,17 +1,19 @@
 import React from "react";
 import DataTable from "./DataTable";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Heroes from "./Heroes";
+import Weapons from "./Weapons";
 
 const App = () => {
     return (
-        <div className="card">
-            <div className="card-header">Users</div>
-            <div className="card-body">
-                <DataTable
-                    fetchUrl="/api/users"
-                    columns={["name", "address", "email", "created_at"]}
-                ></DataTable>
-            </div>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route exact path="/" element={<Heroes />} />
+                <Route path="/heroes" element={<Heroes />} />
+                <Route path="/weapons" element={<Weapons />} />
+            </Routes>
+        </BrowserRouter>
+
     );
 };
 

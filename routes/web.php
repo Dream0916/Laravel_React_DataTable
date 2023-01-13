@@ -17,6 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/heroes', function () {
+    return view('welcome');
+});
+
+Route::get('/weapons', function () {
+    return view('welcome');
+});
+
+//Route::get('/heroes/get_damage', 'App\Http\Controllers\HeroController@getDamage');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

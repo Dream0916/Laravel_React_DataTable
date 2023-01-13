@@ -63,7 +63,7 @@ const Paginator = ({ pagination, pageChanged, totalItems }) => {
                         Last
                     </a>
                 </li>
-                <span class="mt-2 ms-2">
+                <span className="mt-2 ms-2">
                     <i>
                         Showing {pagination.from} - {pagination.to} of {pagination.total} entries.
                     </i>

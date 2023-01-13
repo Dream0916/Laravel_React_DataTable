@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HeroesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\WeaponsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/users', [UsersController::class, 'index'])->name('api.users');
+Route::get('/heroes', [HeroesController::class, 'index'])->name('api.heroes');
+Route::get('/weapons', [WeaponsController::class, 'index'])->name('api.weapons');

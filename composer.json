@@ -14,6 +14,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "phpsa/laravel-api-controller": "^3.0",
         "tcg/voyager": "^1.6"
     },
     "require-dev": {

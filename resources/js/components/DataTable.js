@@ -117,7 +117,7 @@ const DataTable = ({ columns, fetchUrl }) => {
                                 <td colSpan={columns.length}>No items found</td>
                             </tr>
                         ) : (
-                            ""
+                            <tr></tr>
                         )}
 
                         {!loading ? (
