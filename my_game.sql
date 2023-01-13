@@ -11,7 +11,7 @@
  Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 12/01/2023 22:21:43
+ Date: 13/01/2023 06:47:38
 */
 
 SET NAMES utf8mb4;
@@ -168,7 +168,7 @@ INSERT INTO `data_types` VALUES (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-
 INSERT INTO `data_types` VALUES (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2023-01-13 01:28:46', '2023-01-13 01:28:46');
 INSERT INTO `data_types` VALUES (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2023-01-13 01:28:49', '2023-01-13 01:28:49');
 INSERT INTO `data_types` VALUES (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2023-01-13 01:28:51', '2023-01-13 01:28:51');
-INSERT INTO `data_types` VALUES (11, 'heroes', 'heroes', 'Hero', 'Heroes', 'voyager-people', 'App\\Models\\Hero', NULL, 'App\\Http\\Controllers\\Admin\\VoyagerHeroController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2023-01-13 02:38:11', '2023-01-13 03:03:50');
+INSERT INTO `data_types` VALUES (11, 'heroes', 'heroes', 'Hero', 'Heroes', 'voyager-person', 'App\\Models\\Hero', NULL, 'App\\Http\\Controllers\\Admin\\VoyagerHeroController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2023-01-13 02:38:11', '2023-01-13 03:03:50');
 INSERT INTO `data_types` VALUES (15, 'weapons', 'weapons', 'Weapon', 'Weapons', 'voyager-tools', 'App\\Models\\Weapon', NULL, 'App\\Http\\Controllers\\Admin\\VoyagerWeaponController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2023-01-13 02:46:45', '2023-01-13 02:46:45');
 
 -- ----------------------------
@@ -258,12 +258,32 @@ CREATE TABLE `heroes`  (
 -- ----------------------------
 -- Records of heroes
 -- ----------------------------
-INSERT INTO `heroes` VALUES (1, 'Shadow Fiend', 29, NULL, '2023-01-13 06:12:25');
+INSERT INTO `heroes` VALUES (1, 'Shadow Fiend', 29, '2023-01-04 01:46:55', '2023-01-13 06:12:25');
 INSERT INTO `heroes` VALUES (2, 'Undying', 85, '2023-01-13 06:12:47', '2023-01-13 06:12:47');
 INSERT INTO `heroes` VALUES (3, 'Morphling', 89, '2023-01-13 06:13:05', '2023-01-13 06:13:05');
 INSERT INTO `heroes` VALUES (4, 'Enigma', 59, '2023-01-13 06:13:25', '2023-01-13 06:13:25');
 INSERT INTO `heroes` VALUES (5, 'Tusk', 250, '2023-01-13 06:13:48', '2023-01-13 06:13:48');
 INSERT INTO `heroes` VALUES (6, 'Pangolier', 88, '2023-01-13 06:14:11', '2023-01-13 06:14:11');
+
+-- ----------------------------
+-- Table structure for jobs
+-- ----------------------------
+DROP TABLE IF EXISTS `jobs`;
+CREATE TABLE `jobs`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `queue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED NULL DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `jobs_queue_index`(`queue`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jobs
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for menu_items
@@ -304,7 +324,7 @@ INSERT INTO `menu_items` VALUES (10, 1, 'Settings', '', '_self', 'voyager-settin
 INSERT INTO `menu_items` VALUES (11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 8, '2023-01-13 01:28:47', '2023-01-13 01:28:47', 'voyager.categories.index', NULL);
 INSERT INTO `menu_items` VALUES (12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 6, '2023-01-13 01:28:50', '2023-01-13 01:28:50', 'voyager.posts.index', NULL);
 INSERT INTO `menu_items` VALUES (13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2023-01-13 01:28:52', '2023-01-13 01:28:52', 'voyager.pages.index', NULL);
-INSERT INTO `menu_items` VALUES (16, 1, 'Heroes', '', '_self', NULL, NULL, NULL, 15, '2023-01-13 02:38:11', '2023-01-13 02:38:11', 'voyager.heroes.index', NULL);
+INSERT INTO `menu_items` VALUES (16, 1, 'Heroes', '', '_self', 'voyager-person', NULL, NULL, 15, '2023-01-13 02:38:11', '2023-01-13 02:38:11', 'voyager.heroes.index', NULL);
 INSERT INTO `menu_items` VALUES (17, 1, 'Weapons', '', '_self', 'voyager-tools', NULL, NULL, 16, '2023-01-13 02:46:46', '2023-01-13 02:46:46', 'voyager.weapons.index', NULL);
 
 -- ----------------------------
@@ -334,7 +354,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -366,6 +386,7 @@ INSERT INTO `migrations` VALUES (24, '2018_03_11_000000_add_user_settings', 1);
 INSERT INTO `migrations` VALUES (25, '2018_03_14_000000_add_details_to_data_types_table', 1);
 INSERT INTO `migrations` VALUES (26, '2018_03_16_000000_make_settings_value_nullable', 1);
 INSERT INTO `migrations` VALUES (27, '2019_08_19_000000_create_failed_jobs_table', 1);
+INSERT INTO `migrations` VALUES (28, '2023_01_13_125551_create_jobs_table', 2);
 
 -- ----------------------------
 -- Table structure for pages

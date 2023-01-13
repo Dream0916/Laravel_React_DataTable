@@ -5991,7 +5991,10 @@ var App = function App() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
         exact: true,
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Heroes__WEBPACK_IMPORTED_MODULE_2__.default, {})
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Navigate, {
+          from: "/",
+          to: "/heroes"
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
         path: "/heroes",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Heroes__WEBPACK_IMPORTED_MODULE_2__.default, {})
@@ -6024,6 +6027,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Paginator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Paginator */ "./resources/js/components/Paginator.js");
+/* harmony import */ var react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/Table */ "./node_modules/react-bootstrap/esm/Table.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -6042,6 +6046,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6213,8 +6218,10 @@ var DataTable = function DataTable(_ref) {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "tableFixHead",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("table", {
-        className: "table table-hover",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_5__.default, {
+        striped: true,
+        bordered: true,
+        hover: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("thead", {
           className: "table-dark",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("tr", {
@@ -6492,6 +6499,75 @@ function Weapons() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Weapons);
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/***/ ((module, exports) => {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+	var nativeCodeString = '[native code]';
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				if (arg.length) {
+					var inner = classNames.apply(null, arg);
+					if (inner) {
+						classes.push(inner);
+					}
+				}
+			} else if (argType === 'object') {
+				if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+					classes.push(arg.toString());
+					continue;
+				}
+
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
 
 /***/ }),
 
@@ -23964,6 +24040,168 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/Table.js":
+/*!***************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/Table.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+const Table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(({
+  bsPrefix,
+  className,
+  striped,
+  bordered,
+  borderless,
+  hover,
+  size,
+  variant,
+  responsive,
+  ...props
+}, ref) => {
+  const decoratedBsPrefix = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_3__.useBootstrapPrefix)(bsPrefix, 'table');
+  const classes = classnames__WEBPACK_IMPORTED_MODULE_0___default()(className, decoratedBsPrefix, variant && `${decoratedBsPrefix}-${variant}`, size && `${decoratedBsPrefix}-${size}`, striped && `${decoratedBsPrefix}-${typeof striped === 'string' ? `striped-${striped}` : 'striped'}`, bordered && `${decoratedBsPrefix}-bordered`, borderless && `${decoratedBsPrefix}-borderless`, hover && `${decoratedBsPrefix}-hover`);
+  const table = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("table", {
+    ...props,
+    className: classes,
+    ref: ref
+  });
+  if (responsive) {
+    let responsiveClass = `${decoratedBsPrefix}-responsive`;
+    if (typeof responsive === 'string') {
+      responsiveClass = `${responsiveClass}-${responsive}`;
+    }
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: responsiveClass,
+      children: table
+    });
+  }
+  return table;
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Table);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/ThemeProvider.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/ThemeProvider.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DEFAULT_BREAKPOINTS": () => (/* binding */ DEFAULT_BREAKPOINTS),
+/* harmony export */   "DEFAULT_MIN_BREAKPOINT": () => (/* binding */ DEFAULT_MIN_BREAKPOINT),
+/* harmony export */   "useBootstrapPrefix": () => (/* binding */ useBootstrapPrefix),
+/* harmony export */   "useBootstrapBreakpoints": () => (/* binding */ useBootstrapBreakpoints),
+/* harmony export */   "useBootstrapMinBreakpoint": () => (/* binding */ useBootstrapMinBreakpoint),
+/* harmony export */   "useIsRTL": () => (/* binding */ useIsRTL),
+/* harmony export */   "createBootstrapComponent": () => (/* binding */ createBootstrapComponent),
+/* harmony export */   "ThemeConsumer": () => (/* binding */ Consumer),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+const DEFAULT_BREAKPOINTS = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
+const DEFAULT_MIN_BREAKPOINT = 'xs';
+const ThemeContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext({
+  prefixes: {},
+  breakpoints: DEFAULT_BREAKPOINTS,
+  minBreakpoint: DEFAULT_MIN_BREAKPOINT
+});
+const {
+  Consumer,
+  Provider
+} = ThemeContext;
+function ThemeProvider({
+  prefixes = {},
+  breakpoints = DEFAULT_BREAKPOINTS,
+  minBreakpoint = DEFAULT_MIN_BREAKPOINT,
+  dir,
+  children
+}) {
+  const contextValue = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({
+    prefixes: {
+      ...prefixes
+    },
+    breakpoints,
+    minBreakpoint,
+    dir
+  }), [prefixes, breakpoints, minBreakpoint, dir]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Provider, {
+    value: contextValue,
+    children: children
+  });
+}
+function useBootstrapPrefix(prefix, defaultPrefix) {
+  const {
+    prefixes
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(ThemeContext);
+  return prefix || prefixes[defaultPrefix] || defaultPrefix;
+}
+function useBootstrapBreakpoints() {
+  const {
+    breakpoints
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(ThemeContext);
+  return breakpoints;
+}
+function useBootstrapMinBreakpoint() {
+  const {
+    minBreakpoint
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(ThemeContext);
+  return minBreakpoint;
+}
+function useIsRTL() {
+  const {
+    dir
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(ThemeContext);
+  return dir === 'rtl';
+}
+function createBootstrapComponent(Component, opts) {
+  if (typeof opts === 'string') opts = {
+    prefix: opts
+  };
+  const isClassy = Component.prototype && Component.prototype.isReactComponent;
+  // If it's a functional component make sure we don't break it with a ref
+  const {
+    prefix,
+    forwardRefAs = isClassy ? 'ref' : 'innerRef'
+  } = opts;
+  const Wrapped = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(({
+    ...props
+  }, ref) => {
+    props[forwardRefAs] = ref;
+    const bsPrefix = useBootstrapPrefix(props.bsPrefix, prefix);
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Component, {
+      ...props,
+      bsPrefix: bsPrefix
+    });
+  });
+  Wrapped.displayName = `Bootstrap(${Component.displayName || Component.name})`;
+  return Wrapped;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemeProvider);
 
 /***/ }),
 

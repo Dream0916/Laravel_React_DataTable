@@ -1,6 +1,7 @@
 import { debounce } from "lodash"
 import React, { useEffect, useRef, useState } from "react"
 import Paginator from "./Paginator"
+import Table from 'react-bootstrap/Table'
 
 const SORT_ASC = "asc"
 const SORT_DESC = "desc"
@@ -90,7 +91,7 @@ const DataTable = ({ columns, fetchUrl }) => {
             </div>
             {/* Search per page ends  */}
             <div className="tableFixHead">
-                <table className="table table-hover">
+                <Table striped bordered hover>
                     <thead className="table-dark">
                         <tr>
                             {columns.map((column) => {
@@ -142,7 +143,7 @@ const DataTable = ({ columns, fetchUrl }) => {
                             </tr>
                         )}
                     </tbody>
-                </table>
+                </Table>
             </div>
             {data.length > 0 && !loading ? (
                 <div className="mt-2">

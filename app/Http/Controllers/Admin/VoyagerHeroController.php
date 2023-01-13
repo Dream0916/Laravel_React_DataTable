@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Jobs\SendEmailJob;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
@@ -61,9 +62,13 @@ class VoyagerHeroController extends VoyagerBaseController
         $data->permissions()->sync($request->input('weapons', []));
 
         // App should send letter to admin ( mailto:admin@test.com ) when new hero will be created (implement with queue)
+        try{
+            $details['email'] = 'admin@test.com';
+            dispatch(new SendEmailJob($details));
+        }
+        catch(Exception $e){
 
-        $details['email'] = 'futuresea.dev.talent@gmail.com';
-        dispatch(new SendEmailJob($details));
+        }
 
         return redirect()
             ->route("voyager.{$dataType->slug}.index")
